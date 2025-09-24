@@ -1,0 +1,240 @@
+:root {
+  --font-body: var(--font-inter, "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+  --color-ink: #0f172a;
+  --color-ink-soft: #475569;
+  --color-snow: #f8fafc;
+  --color-mist: #e2e8f0;
+  --color-forest: #14532d;
+  --color-forest-light: #166534;
+  --color-gold: #d97706;
+  --color-slate: #1e293b;
+  --color-glacier: #38bdf8;
+  --max-width: 1200px;
+  background-color: var(--color-snow);
+  color: var(--color-ink);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  background: var(--color-snow);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+body {
+  line-height: 1.6;
+}
+
+main {
+  overflow-x: hidden;
+}
+
+section {
+  padding: 5rem 1.5rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 1rem;
+  color: var(--color-slate);
+}
+
+.section-subtitle {
+  font-size: clamp(1.125rem, 4vw, 1.5rem);
+  color: var(--color-ink-soft);
+  margin-bottom: 2rem;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: var(--max-width);
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-forest), var(--color-forest-light));
+  color: white;
+  box-shadow: 0 10px 30px rgba(20, 83, 45, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(20, 83, 45, 0.3);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--color-forest);
+  border: 1px solid var(--color-forest-light);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  border-radius: 999px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(20, 83, 45, 0.12);
+  color: var(--color-forest);
+}
+
+.card {
+  border-radius: 18px;
+  background: white;
+  padding: 2rem;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.highlight {
+  color: var(--color-gold);
+}
+
+.hero {
+  position: relative;
+  color: white;
+  padding: 8rem 1.5rem 6rem;
+  background: linear-gradient(130deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.65)),
+    url("https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=80") center/cover;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.2), rgba(15, 23, 42, 0.8));
+  z-index: 0;
+}
+
+.hero > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: clamp(2.75rem, 6vw, 4.75rem);
+  margin-bottom: 1.5rem;
+  max-width: 720px;
+}
+
+.hero p {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  max-width: 560px;
+  margin-bottom: 2rem;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.hero-stat {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.hero-stat h3 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.hero-stat p {
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(14px);
+  background: rgba(248, 250, 252, 0.7);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.nav-links a {
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+footer {
+  background: var(--color-slate);
+  color: rgba(248, 250, 252, 0.85);
+  padding: 3rem 1.5rem;
+}
+
+footer a {
+  color: rgba(248, 250, 252, 0.85);
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 4rem 1.25rem;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
