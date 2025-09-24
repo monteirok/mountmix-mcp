@@ -1,4 +1,54 @@
+'use client';
+
+import { FormEvent, useState } from "react";
+
 export function ContactSection() {
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus("submitting");
+    setError(null);
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const payload = {
+      name: formData.get("name") ?? "",
+      email: formData.get("email") ?? "",
+      phone: formData.get("phone") ?? "",
+      date: formData.get("date") ?? "",
+      eventType: formData.get("eventType") ?? "",
+      guestCount: Number(formData.get("guestCount") ?? 0),
+      budget: formData.get("budget") ?? "",
+      location: formData.get("location") ?? "",
+      vision: formData.get("vision") ?? "",
+      guide: formData.get("guide") === "on"
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        const { error: message } = await response.json();
+        throw new Error(message || "Unable to submit");
+      }
+
+      form.reset();
+      setStatus("success");
+    } catch (submissionError) {
+      setError(submissionError instanceof Error ? submissionError.message : "Something went wrong");
+      setStatus("error");
+    }
+  }
+
   return (
     <section id="contact" style={{ background: "linear-gradient(180deg, #1e293b, #0f172a)", color: "white" }}>
       <div className="container grid" style={{ gap: "3rem" }}>
@@ -20,6 +70,7 @@ export function ContactSection() {
           </div>
         </div>
         <form
+          onSubmit={handleSubmit}
           style={{
             display: "grid",
             gap: "1rem",
@@ -89,9 +140,16 @@ export function ContactSection() {
             <input type="checkbox" name="guide" style={{ width: "1.1rem", height: "1.1rem" }} />
             <span>Send me the Mountain Cocktail Planning Guide PDF</span>
           </label>
-          <button type="submit" className="btn-primary" style={{ width: "fit-content", padding: "0.85rem 2.5rem" }}>
-            Submit & Start Planning
+          <button
+            type="submit"
+            className="btn-primary"
+            style={{ width: "fit-content", padding: "0.85rem 2.5rem" }}
+            disabled={status === "submitting"}
+          >
+            {status === "submitting" ? "Sending…" : "Submit & Start Planning"}
           </button>
+          {status === "success" && <p style={{ color: "green" }}>Thanks! We’ll be in touch soon.</p>}
+          {status === "error" && <p style={{ color: "var(--color-error, #dc2626)" }}>{error ?? "Please try again."}</p>}
         </form>
       </div>
     </section>

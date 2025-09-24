@@ -40,7 +40,12 @@ A premium marketing site for Mountain Mixology, a craft cocktail catering compan
 - `app/globals.css` – Global styles and design tokens.
 - `next.config.mjs` – Next.js configuration, including image remote patterns for Unsplash photography.
 
+## Admin Dashboard
+
+- Booking form submissions are stored on disk at `data/submissions.json` (ignored from Git). The file is created automatically the first time an inquiry is logged.
+- Sign in at `/admin/login` using the credentials defined in the environment: set `ADMIN_EMAIL`, `ADMIN_PASSWORD`, and optionally `ADMIN_SECRET` for cookie signing. Defaults (`admin@example.com` / `admin123`) are provided for local development—override them before deploying.
+- The protected `/admin/submissions` dashboard lets administrators filter the inbox, update lead status, record internal notes, and log response messages so the team can track outreach history.
+
 ## Notes
 
 - The project references photography hosted on Unsplash to visualize the Mountain Mixology experience. Update the image URLs with your own assets before going live.
-- Form submissions currently do not send data. Integrate with a form service (e.g., Formspree, Netlify, HubSpot) or your backend to capture inquiries.

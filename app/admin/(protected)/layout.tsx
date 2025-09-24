@@ -1,0 +1,48 @@
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import type { ReactNode } from "react";
+
+import { getSessionFromCookies } from "@/lib/auth";
+
+import { SignOutButton } from "../components/SignOutButton";
+
+export default function AdminProtectedLayout({ children }: { children: ReactNode }) {
+  const session = getSessionFromCookies();
+
+  if (!session) {
+    redirect("/admin/login");
+  }
+
+  return (
+    <div style={{ minHeight: "100vh", background: "linear-gradient(180deg, #e2e8f0 0%, #f8fafc 60%, #ffffff 100%)" }}>
+      <header
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "1.25rem 2rem",
+          background: "rgba(15, 23, 42, 0.92)",
+          color: "white",
+          position: "sticky",
+          top: 0,
+          zIndex: 10,
+          backdropFilter: "blur(4px)"
+        }}
+      >
+        <div>
+          <Link href="/admin/submissions" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "1.15rem" }}>
+            Mountain Mix Admin
+          </Link>
+          <p style={{ margin: 0, fontSize: "0.85rem", color: "rgba(226, 232, 240, 0.8)" }}>Signed in as {session.sub}</p>
+        </div>
+        <nav style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+          <Link href="/admin/submissions" style={{ color: "white", fontSize: "0.95rem" }}>
+            Submissions
+          </Link>
+          <SignOutButton />
+        </nav>
+      </header>
+      <div style={{ padding: "2rem 0 4rem" }}>{children}</div>
+    </div>
+  );
+}
