@@ -2,3 +2,4 @@ mcp-rules.txt
 node_modules
 .next/
 data/*.json
+.env.local

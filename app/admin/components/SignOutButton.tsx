@@ -24,13 +24,14 @@ export function SignOutButton() {
       onClick={handleSignOut}
       disabled={isLoading}
       style={{
-        border: "1px solid rgba(148, 163, 184, 0.6)",
+        border: "1px solid var(--border-card)",
         borderRadius: "999px",
         padding: "0.45rem 1rem",
         background: "transparent",
         color: "#0f172a",
         fontSize: "0.9rem",
-        cursor: isLoading ? "not-allowed" : "pointer"
+        cursor: isLoading ? "not-allowed" : "pointer",
+        transition: "transform 0.25s ease, border-color 0.25s ease, color 0.25s ease"
       }}
     >
       {isLoading ? "Signing out…" : "Sign out"}

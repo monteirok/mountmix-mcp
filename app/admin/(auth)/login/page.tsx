@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+import { AnimatedReveal } from "@/app/components/AnimatedReveal";
+
 export default function AdminLoginPage() {
   const router = useRouter();
   const [formState, setFormState] = useState({ email: "", password: "" });
@@ -43,11 +45,23 @@ export default function AdminLoginPage() {
         minHeight: "100vh",
         display: "grid",
         placeItems: "center",
-        background: "linear-gradient(180deg, #0f172a 0%, #1e293b 45%, #334155 100%)",
+        background: "var(--admin-login-bg)",
         padding: "2rem"
       }}
     >
-      <div style={{ background: "rgba(15, 23, 42, 0.85)", borderRadius: "18px", padding: "2.5rem", width: "100%", maxWidth: "420px", color: "white", boxShadow: "0 30px 60px rgba(15, 23, 42, 0.45)" }}>
+      <AnimatedReveal
+        as="div"
+        variant="scale"
+        style={{
+          background: "var(--admin-login-card-bg)",
+          borderRadius: "18px",
+          padding: "2.5rem",
+          width: "100%",
+          maxWidth: "420px",
+          color: "white",
+          boxShadow: "var(--shadow-elevated-strong)"
+        }}
+      >
         <header style={{ marginBottom: "1.75rem" }}>
           <h1 style={{ margin: 0, fontSize: "1.9rem", fontWeight: 600 }}>Admin Login</h1>
           <p style={{ margin: "0.5rem 0 0", color: "rgba(226, 232, 240, 0.75)", fontSize: "0.95rem" }}>
@@ -110,7 +124,7 @@ export default function AdminLoginPage() {
         {error && (
           <p style={{ marginTop: "1rem", color: "#fca5a5", fontSize: "0.9rem" }}>{error}</p>
         )}
-      </div>
+      </AnimatedReveal>
     </div>
   );
 }

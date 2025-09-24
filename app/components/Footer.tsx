@@ -1,10 +1,12 @@
 import Link from "next/link";
 
+import { AnimatedReveal } from "./AnimatedReveal";
+
 export function Footer() {
   return (
-    <footer>
-      <div className="container" style={{ display: "grid", gap: "2rem", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
-        <div>
+    <footer style={{ background: "var(--section-footer-bg)", color: "rgba(248, 250, 252, 0.85)" }}>
+      <AnimatedReveal as="div" className="container" style={{ display: "grid", gap: "2rem", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
+        <AnimatedReveal as="div" variant="fade-up">
           <h3 style={{ marginTop: 0, color: "white" }}>Mountain Mixology</h3>
           <p>
             Premium craft cocktail catering for weddings, corporate events, and private celebrations across the Canadian Rockies.
@@ -12,8 +14,8 @@ export function Footer() {
           <p style={{ marginBottom: 0 }}>
             Based in Canmore, Alberta · Serving Canmore, Banff, Lake Louise, Calgary, and destination venues.
           </p>
-        </div>
-        <div>
+        </AnimatedReveal>
+        <AnimatedReveal as="div" variant="fade-up" delay={0.1}>
           <h4 style={{ marginTop: 0, color: "white" }}>Connect</h4>
           <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: "0.5rem" }}>
             <li>
@@ -24,8 +26,8 @@ export function Footer() {
             </li>
             <li>Instagram · @mountainmixology</li>
           </ul>
-        </div>
-        <div>
+        </AnimatedReveal>
+        <AnimatedReveal as="div" variant="fade-up" delay={0.2}>
           <h4 style={{ marginTop: 0, color: "white" }}>Quick Links</h4>
           <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: "0.5rem" }}>
             <li>
@@ -38,11 +40,11 @@ export function Footer() {
               <Link href="#contact">Get My Custom Quote</Link>
             </li>
           </ul>
-        </div>
-      </div>
-      <div style={{ marginTop: "2.5rem", textAlign: "center", fontSize: "0.85rem", color: "rgba(248, 250, 252, 0.65)" }}>
+        </AnimatedReveal>
+      </AnimatedReveal>
+      <AnimatedReveal as="div" style={{ marginTop: "2.5rem", textAlign: "center", fontSize: "0.85rem", color: "rgba(248, 250, 252, 0.65)" }}>
         © {new Date().getFullYear()} Mountain Mixology. All rights reserved.
-      </div>
+      </AnimatedReveal>
     </footer>
   );
 }

@@ -1,3 +1,5 @@
+import { AnimatedReveal } from "./AnimatedReveal";
+
 const galleryItems = [
   {
     title: "Banff Springs Wedding",
@@ -23,16 +25,19 @@ const galleryItems = [
 
 export function GallerySection() {
   return (
-    <section id="gallery" style={{ background: "var(--color-snow)" }}>
-      <div className="container">
-        <h2 className="section-title">Portfolio Highlights</h2>
-        <p className="section-subtitle">
+    <section id="gallery" style={{ background: "var(--section-gallery-bg)" }}>
+      <AnimatedReveal as="div" className="container" variant="fade-up">
+        <AnimatedReveal as="h2" className="section-title" variant="fade-down">
+          Portfolio Highlights
+        </AnimatedReveal>
+        <AnimatedReveal as="p" className="section-subtitle" delay={0.1}>
           From mountaintop vows to urban soirées, Mountain Mixology curates cocktail environments that photograph as beautifully as they taste.
-        </p>
+        </AnimatedReveal>
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
-          {galleryItems.map((item) => (
-            <figure
+          {galleryItems.map((item, index) => (
+            <AnimatedReveal
               key={item.title}
+              as="figure"
               className="card"
               style={{
                 padding: 0,
@@ -40,16 +45,17 @@ export function GallerySection() {
                 display: "flex",
                 flexDirection: "column"
               }}
+              delay={0.15 + index * 0.08}
             >
-              <div style={{ aspectRatio: "4/3", background: `url(${item.image}) center/cover` }} />
+              <div className="gallery-image" style={{ aspectRatio: "4/3", background: `url(${item.image}) center/cover` }} />
               <figcaption style={{ padding: "1.5rem" }}>
                 <h3 style={{ marginTop: 0 }}>{item.title}</h3>
                 <p style={{ color: "var(--color-ink-soft)" }}>{item.description}</p>
               </figcaption>
-            </figure>
+            </AnimatedReveal>
           ))}
         </div>
-      </div>
+      </AnimatedReveal>
     </section>
   );
 }

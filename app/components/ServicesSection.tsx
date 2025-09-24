@@ -1,3 +1,5 @@
+import { AnimatedReveal } from "./AnimatedReveal";
+
 const services = [
   {
     title: "Weddings & Elopements",
@@ -59,15 +61,23 @@ const packages = [
 
 export function ServicesSection() {
   return (
-    <section id="services" style={{ background: "linear-gradient(180deg, #f8fafc 0%, #e0f2fe 100%)" }}>
-      <div className="container">
-        <h2 className="section-title">Services Designed for Every Peak Moment</h2>
-        <p className="section-subtitle">
+    <section id="services" style={{ background: "var(--section-services-bg)" }}>
+      <AnimatedReveal as="div" className="container" variant="fade-up">
+        <AnimatedReveal as="h2" className="section-title" variant="fade-down">
+          Services Designed for Every Peak Moment
+        </AnimatedReveal>
+        <AnimatedReveal as="p" className="section-subtitle" delay={0.1}>
           Choose the service style that fits your celebration, then tailor the cocktail program, staffing, and presentation details with our team.
-        </p>
+        </AnimatedReveal>
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
-          {services.map((service) => (
-            <div key={service.title} className="card" style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          {services.map((service, index) => (
+              <AnimatedReveal
+              key={service.title}
+              as="div"
+              className="card"
+              style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+              delay={0.15 + index * 0.08}
+            >
               <div
                 style={{
                   borderRadius: "14px",
@@ -75,6 +85,7 @@ export function ServicesSection() {
                   aspectRatio: "4 / 3",
                   background: `url(${service.image}) center/cover`
                 }}
+                className="service-image"
               />
               <div>
                 <h3 style={{ marginTop: 0 }}>{service.title}</h3>
@@ -85,14 +96,16 @@ export function ServicesSection() {
                   <li key={highlight}>{highlight}</li>
                 ))}
               </ul>
-            </div>
+            </AnimatedReveal>
           ))}
         </div>
         <div style={{ marginTop: "4rem" }}>
-          <h3 style={{ fontSize: "1.75rem", marginBottom: "1.5rem", textAlign: "center" }}>Package Pathways</h3>
+          <AnimatedReveal as="h3" style={{ fontSize: "1.75rem", marginBottom: "1.5rem", textAlign: "center" }}>
+            Package Pathways
+          </AnimatedReveal>
           <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}>
-            {packages.map((tier) => (
-              <div key={tier.name} className="card" style={{ position: "relative", paddingTop: "2.5rem" }}>
+            {packages.map((tier, index) => (
+              <AnimatedReveal key={tier.name} as="div" className="card" style={{ position: "relative", paddingTop: "2.5rem" }} delay={0.2 + index * 0.1}>
                 {tier.badge ? (
                   <span
                     className="badge"
@@ -116,11 +129,11 @@ export function ServicesSection() {
                     <li key={perk}>{perk}</li>
                   ))}
                 </ul>
-              </div>
+              </AnimatedReveal>
             ))}
           </div>
         </div>
-      </div>
+      </AnimatedReveal>
     </section>
   );
 }

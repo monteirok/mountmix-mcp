@@ -2,6 +2,8 @@
 
 import { FormEvent, useState } from "react";
 
+import { AnimatedReveal } from "./AnimatedReveal";
+
 export function ContactSection() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
@@ -50,36 +52,43 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" style={{ background: "linear-gradient(180deg, #1e293b, #0f172a)", color: "white" }}>
-      <div className="container grid" style={{ gap: "3rem" }}>
-        <div>
-          <h2 className="section-title" style={{ color: "white" }}>
+    <section id="contact" style={{ background: "var(--section-contact-bg)", color: "white" }}>
+      <AnimatedReveal as="div" className="container grid" style={{ gap: "3rem" }}>
+        <AnimatedReveal as="div" variant="fade-down">
+          <AnimatedReveal as="h2" className="section-title" style={{ color: "white" }}>
             Ready to Elevate Your Celebration?
-          </h2>
-          <p className="section-subtitle" style={{ color: "rgba(226, 232, 240, 0.85)" }}>
+          </AnimatedReveal>
+          <AnimatedReveal as="p" className="section-subtitle" style={{ color: "rgba(226, 232, 240, 0.85)" }} delay={0.1}>
             Share the details of your event and we’ll craft a custom bar proposal within 48 hours. Prefer to start with inspiration? Request our mountain cocktail
             planning guide for sample menus and timeline tips.
-          </p>
-          <div className="card" style={{ background: "rgba(15, 23, 42, 0.6)", border: "1px solid rgba(148, 163, 184, 0.35)", color: "white" }}>
+          </AnimatedReveal>
+          <AnimatedReveal
+            as="div"
+            className="card"
+            style={{ background: "var(--contact-info-card-bg)", border: "1px solid var(--contact-info-border)", color: "var(--contact-info-text)" }}
+            delay={0.15}
+          >
             <h3 style={{ marginTop: 0 }}>What happens next</h3>
             <ul style={{ margin: "1rem 0", paddingLeft: "1.2rem", lineHeight: 1.8 }}>
               <li>We schedule a discovery call to align on goals, venue logistics, and flavour profiles.</li>
               <li>Our team presents a tailored menu, package recommendation, and transparent pricing.</li>
               <li>Once booked, we coordinate with your planner and vendors, then deliver a seamless bar experience.</li>
             </ul>
-          </div>
-        </div>
-        <form
+          </AnimatedReveal>
+        </AnimatedReveal>
+        <AnimatedReveal
+          as="form"
           onSubmit={handleSubmit}
           style={{
             display: "grid",
             gap: "1rem",
-            background: "white",
+            background: "var(--surface-card)",
             padding: "2.5rem",
             borderRadius: "18px",
             color: "var(--color-ink)",
-            boxShadow: "0 24px 60px rgba(15, 23, 42, 0.3)"
+            boxShadow: "var(--shadow-elevated)"
           }}
+          delay={0.2}
         >
           <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "1rem" }}>
             <label style={{ display: "grid", gap: "0.4rem" }}>
@@ -148,10 +157,10 @@ export function ContactSection() {
           >
             {status === "submitting" ? "Sending…" : "Submit & Start Planning"}
           </button>
-          {status === "success" && <p style={{ color: "green" }}>Thanks! We’ll be in touch soon.</p>}
+          {status === "success" && <p style={{ color: "var(--success-text)" }}>Thanks! We’ll be in touch soon.</p>}
           {status === "error" && <p style={{ color: "var(--color-error, #dc2626)" }}>{error ?? "Please try again."}</p>}
-        </form>
-      </div>
+        </AnimatedReveal>
+      </AnimatedReveal>
     </section>
   );
 }

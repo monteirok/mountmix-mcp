@@ -1,3 +1,5 @@
+import { AnimatedReveal } from "./AnimatedReveal";
+
 const testimonials = [
   {
     quote:
@@ -21,32 +23,34 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section id="testimonials" style={{ background: "linear-gradient(160deg, #0f172a, #1e293b)", color: "white" }}>
-      <div className="container">
-        <h2 className="section-title" style={{ color: "white" }}>
+    <section id="testimonials" style={{ background: "var(--section-testimonials-bg)", color: "white" }}>
+      <AnimatedReveal as="div" className="container" variant="fade-up">
+        <AnimatedReveal as="h2" className="section-title" style={{ color: "white" }} variant="fade-down">
           Praise from the Peaks
-        </h2>
-        <p className="section-subtitle" style={{ color: "rgba(241, 245, 249, 0.8)" }}>
+        </AnimatedReveal>
+        <AnimatedReveal as="p" className="section-subtitle" style={{ color: "rgba(241, 245, 249, 0.8)" }} delay={0.1}>
           Trusted by couples, planners, and corporate hosts throughout the Rockies.
-        </p>
+        </AnimatedReveal>
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
-          {testimonials.map((testimonial) => (
-            <blockquote
+          {testimonials.map((testimonial, index) => (
+            <AnimatedReveal
               key={testimonial.name}
+              as="blockquote"
               className="card"
               style={{
-                background: "rgba(15, 23, 42, 0.3)",
-                border: "1px solid rgba(148, 163, 184, 0.35)",
+                background: "var(--testimonial-card-bg)",
+                border: "1px solid var(--testimonial-card-border)",
                 color: "white"
               }}
+              delay={0.15 + index * 0.1}
             >
               <p style={{ fontSize: "1.05rem", fontStyle: "italic" }}>“{testimonial.quote}”</p>
               <footer style={{ marginTop: "1.5rem", fontWeight: 600 }}>{testimonial.name}</footer>
               <span style={{ color: "rgba(241, 245, 249, 0.75)" }}>{testimonial.event}</span>
-            </blockquote>
+            </AnimatedReveal>
           ))}
         </div>
-      </div>
+      </AnimatedReveal>
     </section>
   );
 }

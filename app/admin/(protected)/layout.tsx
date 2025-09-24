@@ -2,6 +2,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
 
+import { AnimatedReveal } from "@/app/components/AnimatedReveal";
+import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { getSessionFromCookies } from "@/lib/auth";
 
 import { SignOutButton } from "../components/SignOutButton";
@@ -14,7 +16,7 @@ export default function AdminProtectedLayout({ children }: { children: ReactNode
   }
 
   return (
-    <div style={{ minHeight: "100vh", background: "linear-gradient(180deg, #e2e8f0 0%, #f8fafc 60%, #ffffff 100%)" }}>
+    <div style={{ minHeight: "100vh", background: "var(--admin-shell-bg)" }}>
       <header
         style={{
           display: "flex",
@@ -29,18 +31,19 @@ export default function AdminProtectedLayout({ children }: { children: ReactNode
           backdropFilter: "blur(4px)"
         }}
       >
-        <div>
+        <AnimatedReveal as="div" variant="fade-down" once distance={20}>
           <Link href="/admin/submissions" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "1.15rem" }}>
             Mountain Mix Admin
           </Link>
           <p style={{ margin: 0, fontSize: "0.85rem", color: "rgba(226, 232, 240, 0.8)" }}>Signed in as {session.sub}</p>
-        </div>
-        <nav style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-          <Link href="/admin/submissions" style={{ color: "white", fontSize: "0.95rem" }}>
+        </AnimatedReveal>
+        <AnimatedReveal as="nav" style={{ display: "flex", alignItems: "center", gap: "1rem" }} variant="fade" once>
+          <Link href="/admin/submissions" style={{ color: "white", fontSize: "0.95rem", transition: "opacity 0.2s ease" }}>
             Submissions
           </Link>
+          <ThemeToggle />
           <SignOutButton />
-        </nav>
+        </AnimatedReveal>
       </header>
       <div style={{ padding: "2rem 0 4rem" }}>{children}</div>
     </div>

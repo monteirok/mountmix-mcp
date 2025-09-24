@@ -1,3 +1,5 @@
+import { AnimatedReveal } from "./AnimatedReveal";
+
 const reasons = [
   {
     title: "Licensed & Insured",
@@ -27,21 +29,23 @@ const reasons = [
 
 export function WhyChooseUs() {
   return (
-    <section id="why-us" style={{ background: "linear-gradient(180deg, #ecfeff, #f8fafc)" }}>
-      <div className="container">
-        <h2 className="section-title">Why Mountain Mixology</h2>
-        <p className="section-subtitle">
+    <section id="why-us" style={{ background: "var(--section-why-bg)" }}>
+      <AnimatedReveal as="div" className="container" variant="fade-up">
+        <AnimatedReveal as="h2" className="section-title" variant="fade-down">
+          Why Mountain Mixology
+        </AnimatedReveal>
+        <AnimatedReveal as="p" className="section-subtitle" delay={0.1}>
           We treat every event like a once-in-a-lifetime summit. Your guests deserve an experience that feels intentional, luxurious, and uniquely Rocky Mountain.
-        </p>
+        </AnimatedReveal>
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}>
-          {reasons.map((reason) => (
-            <div key={reason.title} className="card" style={{ minHeight: "200px" }}>
+          {reasons.map((reason, index) => (
+            <AnimatedReveal key={reason.title} as="div" className="card" style={{ minHeight: "200px" }} delay={0.12 + index * 0.08}>
               <h3 style={{ marginTop: 0 }}>{reason.title}</h3>
               <p style={{ color: "var(--color-ink-soft)" }}>{reason.description}</p>
-            </div>
+            </AnimatedReveal>
           ))}
         </div>
-      </div>
+      </AnimatedReveal>
     </section>
   );
 }

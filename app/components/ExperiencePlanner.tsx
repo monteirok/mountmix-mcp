@@ -1,3 +1,5 @@
+import { AnimatedReveal } from "./AnimatedReveal";
+
 const steps = [
   {
     title: "Discover",
@@ -18,23 +20,25 @@ const steps = [
 
 export function ExperiencePlanner() {
   return (
-    <section id="process" style={{ background: "linear-gradient(180deg, #fff7ed, #f8fafc)" }}>
-      <div className="container">
-        <h2 className="section-title">How We Elevate Every Pour</h2>
-        <p className="section-subtitle">
+    <section id="process" style={{ background: "var(--section-process-bg)" }}>
+      <AnimatedReveal as="div" className="container" variant="fade-up">
+        <AnimatedReveal as="h2" className="section-title" variant="fade-down">
+          How We Elevate Every Pour
+        </AnimatedReveal>
+        <AnimatedReveal as="p" className="section-subtitle" delay={0.1}>
           From your first inquiry to final cheers, our process is designed to make bar planning seamless, transparent, and inspired by the Rockies.
-        </p>
+        </AnimatedReveal>
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}>
           {steps.map((step, index) => (
-            <div key={step.title} className="card">
+            <AnimatedReveal key={step.title} as="div" className="card" delay={0.15 + index * 0.1} variant="fade-up">
               <span className="badge">Step {index + 1}</span>
               <h3 style={{ marginTop: "1rem" }}>{step.title}</h3>
               <p style={{ color: "var(--color-ink-soft)" }}>{step.description}</p>
               <p style={{ fontSize: "0.9rem", color: "var(--color-gold)", fontWeight: 600 }}>{step.duration}</p>
-            </div>
+            </AnimatedReveal>
           ))}
         </div>
-      </div>
+      </AnimatedReveal>
     </section>
   );
 }

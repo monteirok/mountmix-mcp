@@ -1,3 +1,5 @@
+import { AnimatedReveal } from "./AnimatedReveal";
+
 const locations = [
   {
     area: "Canmore & Kananaskis",
@@ -20,14 +22,21 @@ const locations = [
 export function ServiceArea() {
   return (
     <section id="service-area">
-      <div className="container grid" style={{ gap: "3rem", alignItems: "center" }}>
-        <div>
-          <h2 className="section-title">Service Area & Logistics</h2>
-          <p className="section-subtitle">
+      <AnimatedReveal as="div" className="container grid" style={{ gap: "3rem", alignItems: "center" }}>
+        <AnimatedReveal as="div" variant="fade-up" distance={36}>
+          <AnimatedReveal as="h2" className="section-title" variant="fade-down">
+            Service Area & Logistics
+          </AnimatedReveal>
+          <AnimatedReveal as="p" className="section-subtitle" delay={0.1}>
             Mountain Mixology serves the Canadian Rockies and Calgary region with swift communication and thoughtful planning. Expect a response within 24 hours
             and a collaborative discovery call to align on vision, guest count, and venue logistics.
-          </p>
-          <div className="card" style={{ background: "linear-gradient(135deg, #0f766e, #134e4a)", color: "white" }}>
+          </AnimatedReveal>
+          <AnimatedReveal
+            as="div"
+            className="card"
+            style={{ background: "var(--service-area-feature-bg)", color: "var(--service-area-feature-text)" }}
+            delay={0.2}
+          >
             <h3 style={{ marginTop: 0 }}>What We Handle</h3>
             <ul style={{ margin: "1rem 0", paddingLeft: "1.2rem", lineHeight: 1.8 }}>
               <li>Venue compliance, permits, and insurance documentation</li>
@@ -36,17 +45,17 @@ export function ServiceArea() {
               <li>Backup plans for weather shifts, altitude, and outdoor restrictions</li>
             </ul>
             <p style={{ marginBottom: 0 }}>You focus on the view—we’ll keep every glass full.</p>
-          </div>
-        </div>
+          </AnimatedReveal>
+        </AnimatedReveal>
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1.5rem" }}>
-          {locations.map((location) => (
-            <div key={location.area} className="card">
+          {locations.map((location, index) => (
+            <AnimatedReveal key={location.area} as="div" className="card" delay={0.15 + index * 0.1}>
               <h3 style={{ marginTop: 0 }}>{location.area}</h3>
               <p style={{ color: "var(--color-ink-soft)" }}>{location.details}</p>
-            </div>
+            </AnimatedReveal>
           ))}
         </div>
-      </div>
+      </AnimatedReveal>
     </section>
   );
 }

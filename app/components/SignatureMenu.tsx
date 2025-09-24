@@ -1,3 +1,5 @@
+import { AnimatedReveal } from "./AnimatedReveal";
+
 const cocktails = [
   {
     name: "Rocky Mountain Old Fashioned",
@@ -48,21 +50,29 @@ const enhancements = [
 export function SignatureMenu() {
   return (
     <section id="menu">
-      <div className="container">
-        <h2 className="section-title">Signature Cocktail Collection</h2>
-        <p className="section-subtitle">
+      <AnimatedReveal as="div" className="container" variant="fade-up">
+        <AnimatedReveal as="h2" className="section-title" variant="fade-down">
+          Signature Cocktail Collection
+        </AnimatedReveal>
+        <AnimatedReveal as="p" className="section-subtitle" delay={0.1}>
           Our menus rotate with the seasons and your story. Explore guest favourites below, then collaborate with us to craft a bespoke lineup for your event.
-        </p>
+        </AnimatedReveal>
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
-          {cocktails.map((cocktail) => (
-            <div key={cocktail.name} className="card" style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+          {cocktails.map((cocktail, index) => (
+            <AnimatedReveal
+              key={cocktail.name}
+              as="div"
+              className="card"
+              style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}
+              delay={0.15 + index * 0.07}
+            >
               <h3 style={{ margin: "0 0 0.5rem" }}>{cocktail.name}</h3>
               <p style={{ color: "var(--color-ink-soft)", flexGrow: 1 }}>{cocktail.description}</p>
               <span style={{ fontWeight: 700, color: "var(--color-forest)" }}>{cocktail.price}</span>
-            </div>
+            </AnimatedReveal>
           ))}
         </div>
-        <div className="card" style={{ marginTop: "3rem", background: "linear-gradient(135deg, #fef3c7, #fef9c3)" }}>
+        <AnimatedReveal as="div" className="card" style={{ marginTop: "3rem", background: "var(--enhancement-card-bg)" }} delay={0.3}>
           <h3 style={{ marginTop: 0 }}>Enhance the Experience</h3>
           <p style={{ color: "var(--color-ink-soft)" }}>Layer in the details that make your bar unforgettable:</p>
           <ul style={{ display: "grid", gap: "0.5rem", margin: 0, paddingLeft: "1.2rem" }}>
@@ -70,8 +80,8 @@ export function SignatureMenu() {
               <li key={item}>{item}</li>
             ))}
           </ul>
-        </div>
-      </div>
+        </AnimatedReveal>
+      </AnimatedReveal>
     </section>
   );
 }

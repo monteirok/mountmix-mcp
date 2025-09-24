@@ -1,38 +1,53 @@
 import Link from "next/link";
 
+import { AnimatedReveal } from "./AnimatedReveal";
+
+const stats = [
+  {
+    heading: "320+",
+    copy: "Mountain celebrations elevated with handcrafted cocktails."
+  },
+  {
+    heading: "Canmore · Banff · Calgary",
+    copy: "Serving the Rockies with portable bars, licensed bartenders, and reliable logistics."
+  },
+  {
+    heading: "$13–$17",
+    copy: "Per-signature cocktail pricing to anchor your planning and budgeting."
+  }
+];
+
 export function Hero() {
   return (
     <header className="hero" id="top">
-      <div className="container">
-        <span className="badge">Premium craft cocktail catering</span>
-        <h1>Elevated Cocktails, Mountain Views</h1>
-        <p>
+      <AnimatedReveal as="div" className="container" variant="fade-down" distance={32}>
+        <AnimatedReveal as="span" className="badge" variant="fade" delay={0.1}>
+          Premium craft cocktail catering
+        </AnimatedReveal>
+        <AnimatedReveal as="h1" variant="fade-down" delay={0.2} distance={40}>
+          Elevated Cocktails, Mountain Views
+        </AnimatedReveal>
+        <AnimatedReveal as="p" variant="fade" delay={0.3}>
           Mountain Mixology brings bespoke cocktail bars to weddings, corporate galas, and private celebrations across the Canadian Rockies. We combine
           locally sourced ingredients, expert technique, and warm hospitality to turn every pour into a moment worth remembering.
-        </p>
-        <div className="hero-cta">
+        </AnimatedReveal>
+        <AnimatedReveal as="div" className="hero-cta" delay={0.35} variant="fade-up">
           <Link href="#contact" className="btn-primary">
             Get My Custom Quote
           </Link>
           <Link href="#menu" className="btn-secondary">
             View Signature Menu
           </Link>
-        </div>
+        </AnimatedReveal>
         <div className="hero-stats">
-          <div className="hero-stat">
-            <h3>320+</h3>
-            <p>Mountain celebrations elevated with handcrafted cocktails.</p>
-          </div>
-          <div className="hero-stat">
-            <h3>Canmore · Banff · Calgary</h3>
-            <p>Serving the Rockies with portable bars, licensed bartenders, and reliable logistics.</p>
-          </div>
-          <div className="hero-stat">
-            <h3>$13–$17</h3>
-            <p>Per-signature cocktail pricing to anchor your planning and budgeting.</p>
-          </div>
+          {stats.map((stat, index) => (
+            <AnimatedReveal key={stat.heading} as="div" className="hero-stat" delay={0.45 + index * 0.1} variant="scale">
+              <h3>{stat.heading}</h3>
+              <p>{stat.copy}</p>
+            </AnimatedReveal>
+          ))}
         </div>
-      </div>
+      </AnimatedReveal>
     </header>
   );
 }

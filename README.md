@@ -45,6 +45,7 @@ A premium marketing site for Mountain Mixology, a craft cocktail catering compan
 - Booking form submissions are stored on disk at `data/submissions.json` (ignored from Git). The file is created automatically the first time an inquiry is logged.
 - Sign in at `/admin/login` using the credentials defined in the environment: set `ADMIN_EMAIL`, `ADMIN_PASSWORD`, and optionally `ADMIN_SECRET` for cookie signing. Defaults (`admin@example.com` / `admin123`) are provided for local development—override them before deploying.
 - The protected `/admin/submissions` dashboard lets administrators filter the inbox, update lead status, record internal notes, and log response messages so the team can track outreach history.
+- A global theme system powers light/dark mode. The visitor’s system preference is respected on first load, and a toggle appears in the top navigation (and the admin shell). Preferences persist per device via `localStorage`.
 
 ## Notes
 

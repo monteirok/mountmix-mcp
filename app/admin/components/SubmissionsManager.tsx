@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 
+import { AnimatedReveal } from "@/app/components/AnimatedReveal";
+
 import type { Submission, SubmissionResponse, SubmissionStatus } from "@/lib/submissions";
 
 const STATUS_LABELS: Record<SubmissionStatus, string> = {
@@ -253,8 +255,12 @@ export function SubmissionsManager({ initialSubmissions }: { initialSubmissions:
   const isLoading = isRefreshing || !selectedSubmission;
 
   return (
-    <div style={{ display: "grid", gap: "1.5rem", gridTemplateColumns: "minmax(280px, 340px) 1fr" }}>
-      <aside style={{ background: "white", borderRadius: "14px", boxShadow: "0 18px 40px rgba(15, 23, 42, 0.12)", padding: "1rem" }}>
+    <AnimatedReveal
+      as="div"
+      variant="fade-up"
+      style={{ display: "grid", gap: "1.5rem", gridTemplateColumns: "minmax(280px, 340px) 1fr" }}
+    >
+      <AnimatedReveal as="aside" variant="fade-up" distance={32} style={{ background: "white", borderRadius: "14px", boxShadow: "0 18px 40px rgba(15, 23, 42, 0.12)", padding: "1rem" }}>
         <header style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem" }}>
           <h2 style={{ fontSize: "1.1rem", fontWeight: 600, margin: 0 }}>Submissions</h2>
           <button
@@ -312,7 +318,15 @@ export function SubmissionsManager({ initialSubmissions }: { initialSubmissions:
                   borderRadius: "12px",
                   padding: "0.75rem",
                   background: selectedId === submission.id ? "#eff6ff" : "white",
-                  cursor: "pointer"
+                  cursor: "pointer",
+                  transition: "transform 0.3s ease, border 0.3s ease, background 0.3s ease, box-shadow 0.3s ease",
+                  boxShadow: selectedId === submission.id ? "0 12px 28px rgba(37, 99, 235, 0.18)" : "0 10px 20px rgba(15, 23, 42, 0.05)"
+                }}
+                onMouseEnter={(event) => {
+                  event.currentTarget.style.transform = "translateY(-3px)";
+                }}
+                onMouseLeave={(event) => {
+                  event.currentTarget.style.transform = "translateY(0)";
                 }}
               >
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.4rem", alignItems: "center" }}>
@@ -325,9 +339,9 @@ export function SubmissionsManager({ initialSubmissions }: { initialSubmissions:
             ))
           )}
         </div>
-      </aside>
+      </AnimatedReveal>
 
-      <section style={{ background: "white", borderRadius: "14px", boxShadow: "0 18px 40px rgba(15, 23, 42, 0.12)", padding: "1.5rem", minHeight: "60vh" }}>
+      <AnimatedReveal as="section" variant="fade-up" distance={24} style={{ background: "white", borderRadius: "14px", boxShadow: "0 18px 40px rgba(15, 23, 42, 0.12)", padding: "1.5rem", minHeight: "60vh" }}>
         {!selectedSubmission ? (
           <p style={{ color: "#64748b" }}>Select a submission to view details.</p>
         ) : (
@@ -543,7 +557,7 @@ export function SubmissionsManager({ initialSubmissions }: { initialSubmissions:
             </section>
           </div>
         )}
-      </section>
-    </div>
+      </AnimatedReveal>
+    </AnimatedReveal>
   );
 }
