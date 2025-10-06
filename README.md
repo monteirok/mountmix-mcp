@@ -60,6 +60,23 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+## Backend API & Admin Dashboard
+
+- A lightweight Express + SQLite backend lives in `server/`.
+- Copy `server/.env.example` to `server/.env` and adjust values (change the default admin password and JWT secret).
+- Start the backend with `npm run server` (runs on port 4000 by default).
+- The frontend uses `VITE_API_BASE_URL` (default `http://localhost:4000/api`) to talk to the API.
+- Default seeded admin credentials: `admin@mountainmixology.com` / `changeme123` (update these in `.env`).
+- Admin dashboard is available at `/admin` for managing booking submissions.
+
+### Available endpoints
+
+- `POST /api/bookings` – store a new booking enquiry.
+- `POST /api/admin/login` – obtain an admin JWT.
+- `GET /api/admin/me` – validate the current admin session.
+- `GET /api/admin/bookings` – list bookings (supports `status` & `search` query params).
+- `PATCH /api/admin/bookings/:id` – update status, notes, or response for a booking.
+
 ## How can I deploy this project?
 
 Simply open [Lovable](https://lovable.dev/projects/677c6d0a-63d2-47b4-8251-3bfb75e5a789) and click on Share -> Publish.

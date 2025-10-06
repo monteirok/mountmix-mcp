@@ -55,6 +55,11 @@ const Footer = () => {
                   Book Event
                 </a>
               </li>
+              <li>
+                <a href="/admin/login" className="text-mountain-muted hover:text-gold transition-all duration-300">
+                  Admin Login
+                </a>
+              </li>
             </ul>
           </div>
 
