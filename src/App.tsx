@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,7 +12,11 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { useTheme } from "next-themes";
 
 const AppContent = () => {
-  const { resolvedTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setTheme("system");
+  }, [setTheme]);
 
   return (
     <TooltipProvider>

@@ -146,7 +146,7 @@ const BookingSection = () => {
   };
 
   return (
-    <section id="booking" className="py-20 px-6 bg-gradient-to-b from-white via-white to-mountain-cream/60">
+    <section id="booking" className="py-20 px-6 bg-gradient-to-b from-background via-background/80 to-muted/40">
       <div className="container mx-auto max-w-6xl">
         <div className="mb-12 text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1 text-sm font-medium uppercase tracking-wider text-gold">

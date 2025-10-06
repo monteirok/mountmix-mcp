@@ -3,7 +3,6 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import ThemeToggle from "@/components/ThemeToggle";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -88,7 +87,7 @@ const Header = () => {
           </div>
           
           {/* Desktop Navigation - moved to right */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-8">
             <nav className="flex items-center space-x-8">
               <button 
                 onClick={() => handleNavClick('about')} 
@@ -117,8 +116,7 @@ const Header = () => {
             </nav>
             
             {/* Desktop Book Button */}
-            <div className="flex items-center gap-3">
-              <ThemeToggle />
+            <div className="flex items-center">
               <Button
                 onClick={handleBookingClick}
                 className="bg-gold text-gold-foreground hover:bg-gold/90 shadow-glow hover-scale transition-all duration-300"
@@ -162,7 +160,6 @@ const Header = () => {
                   >
                     Gallery
                   </button>
-                  <ThemeToggle />
                   <Button 
                     onClick={handleBookingClick}
                     className="bg-gold text-gold-foreground hover:bg-gold/90 shadow-glow transition-all duration-300 mt-4"

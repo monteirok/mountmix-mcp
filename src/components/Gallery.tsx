@@ -192,7 +192,7 @@ const Gallery = () => {
                 </div>
 
                 {/* Expand icon */}
-                <div className="absolute top-4 right-4 w-10 h-10 bg-foreground/80 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-primary/80">
+                <div className="absolute top-4 right-4 w-10 h-10 scrim backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-primary/80">
                   <Maximize2 className="w-5 h-5 text-primary-foreground" />
                 </div>
               </div>
@@ -208,7 +208,7 @@ const Gallery = () => {
           <div className="relative max-w-6xl w-full h-full flex items-center justify-center">
             <button
               onClick={closeLightbox}
-              className="absolute top-8 right-8 z-10 w-12 h-12 bg-foreground/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-foreground/20 transition-colors duration-300"
+              className="absolute top-8 right-8 z-10 w-12 h-12 scrim backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-primary/40 transition-colors duration-300"
             >
               <X className="w-6 h-6 text-foreground" />
             </button>
