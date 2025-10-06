@@ -99,7 +99,7 @@ const Services = () => {
             >
               <CardHeader className="text-center pb-4">
                 <div className={`mx-auto mb-4 p-4 rounded-2xl ${service.iconBg} group-hover:scale-110 transition-all duration-300`}>
-                  <service.icon className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300" />
+                  <service.icon className="w-8 h-8 text-foreground group-hover:scale-110 transition-transform duration-300" />
                 </div>
                 <CardTitle className="text-xl text-foreground mb-2">
                   {service.title}

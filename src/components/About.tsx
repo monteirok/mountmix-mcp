@@ -12,7 +12,7 @@ const About = () => {
     <section id="about" className="py-20 px-6 bg-darker-surface">
       <div className="container mx-auto max-w-7xl">
         <div className="animate-fade-in">
-          <Card className="bg-background/10 backdrop-blur-xl border border-white/10 rounded-3xl p-8 lg:p-12 hover-scale transition-all duration-500 liquid-reflection overflow-hidden">
+          <Card className="bg-card/80 backdrop-blur-xl border border-border/60 rounded-3xl p-8 lg:p-12 hover-scale transition-all duration-500 liquid-reflection overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center min-h-[600px]">
               {/* Content - Takes up 3 columns */}
               <div className="lg:col-span-3 space-y-8 flex flex-col justify-between h-full">
@@ -47,7 +47,7 @@ const About = () => {
                   {stats.map((stat, index) => (
                     <Card 
                       key={index} 
-                      className="bg-background/5 backdrop-blur-sm border border-white/5 rounded-2xl p-6 text-center hover-scale transition-all duration-300 liquid-reflection"
+                      className="bg-background/60 backdrop-blur-sm border border-border/60 rounded-2xl p-6 text-center hover-scale transition-all duration-300 liquid-reflection"
                       style={{ animationDelay: `${index * 150}ms` }}
                     >
                       <div className="text-3xl md:text-4xl font-bold text-gold mb-2">
@@ -63,7 +63,7 @@ const About = () => {
 
               {/* Image - Takes up 2 columns */}
               <div className="lg:col-span-2 relative animate-fade-in h-full" style={{ animationDelay: "300ms" }}>
-                <Card className="overflow-hidden border border-white/10 rounded-3xl hover-scale transition-all duration-500 liquid-reflection bg-background/5 backdrop-blur-sm h-full">
+                <Card className="overflow-hidden border border-border/60 rounded-3xl hover-scale transition-all duration-500 liquid-reflection bg-background/60 backdrop-blur-sm h-full">
                   <img 
                     src={cocktailImage} 
                     alt="Craft cocktail with fresh ingredients"

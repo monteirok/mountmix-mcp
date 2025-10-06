@@ -83,6 +83,10 @@
     --sidebar-ring: 200 100% 40%;
 
     --radius: 1rem;
+
+    /* Overlay scrims */
+    --scrim: 222 84% 4.9%;
+    --scrim-strong: 220 70% 3%;
   }
 
   .dark {
@@ -163,6 +167,10 @@
     --sidebar-accent-foreground: 220 10% 95%;
     --sidebar-border: 220 20% 25%;
     --sidebar-ring: 200 100% 70%;
+
+    /* Overlay scrims */
+    --scrim: 220 15% 20%;
+    --scrim-strong: 220 30% 12%;
   }
 }
 
@@ -198,6 +206,14 @@
       0 20px 50px hsla(var(--glass-shadow), calc(var(--glass-shadow-opacity) * 1.5)),
       inset 0 1px 0 hsla(var(--glass-highlight), calc(var(--glass-highlight-opacity) * 2)),
       0 0 0 1px hsla(var(--glass-border), calc(var(--glass-border-opacity) * 1.5));
+  }
+
+  .scrim {
+    background-color: hsla(var(--scrim) / 0.75);
+  }
+
+  .scrim-strong {
+    background-color: hsla(var(--scrim-strong) / 0.9);
   }
   
   .glass-subtle {

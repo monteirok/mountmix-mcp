@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,45 +7,16 @@ import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import { AdminAuthProvider } from "@/context/AdminAuthContext";
+import { ThemeProvider } from "@/components/theme-provider";
+import { useTheme } from "next-themes";
 
-const App = () => {
-  const [systemTheme, setSystemTheme] = useState<"light" | "dark">(() => {
-    if (typeof window === "undefined") {
-      return "light";
-    }
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  });
-
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-
-    const applyTheme = (matches: boolean) => {
-      const root = document.documentElement;
-      root.classList.toggle("dark", matches);
-      setSystemTheme(matches ? "dark" : "light");
-    };
-
-    applyTheme(mediaQuery.matches);
-
-    const handleChange = (event: MediaQueryListEvent) => {
-      applyTheme(event.matches);
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-
-    return () => {
-      mediaQuery.removeEventListener("change", handleChange);
-    };
-  }, []);
+const AppContent = () => {
+  const { resolvedTheme } = useTheme();
 
   return (
     <TooltipProvider>
       <Toaster />
-      <Sonner theme={systemTheme} />
+      <Sonner theme={resolvedTheme === "dark" ? "dark" : "light"} />
       <AdminAuthProvider>
         <BrowserRouter>
           <Routes>
@@ -58,6 +28,14 @@ const App = () => {
         </BrowserRouter>
       </AdminAuthProvider>
     </TooltipProvider>
+  );
+};
+
+const App = () => {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 };
 

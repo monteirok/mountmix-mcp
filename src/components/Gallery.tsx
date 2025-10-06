@@ -141,7 +141,7 @@ const Gallery = () => {
                 relative group overflow-hidden px-8 py-4 text-lg font-medium rounded-full transition-all duration-500 hover:scale-105 hover:shadow-2xl
                 ${activeCategory === category.id 
                   ? "bg-primary/90 text-primary-foreground shadow-2xl backdrop-blur-xl border border-primary/30 liquid-reflection" 
-                  : "bg-secondary/80 text-secondary-foreground backdrop-blur-xl border border-white/20 hover:bg-accent/80 hover:border-primary/50 liquid-reflection"
+                  : "bg-secondary/80 text-secondary-foreground backdrop-blur-xl border border-border/60 hover:bg-accent/80 hover:border-primary/50 liquid-reflection"
                 }
               `}
             >
@@ -180,20 +180,20 @@ const Gallery = () => {
                 />
                 
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 {/* Content overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-foreground transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                   <h3 className="font-bold text-xl mb-2">{image.title}</h3>
-                  <p className="text-sm text-white/90 mb-3">{image.description}</p>
+                  <p className="text-sm text-foreground/80 mb-3">{image.description}</p>
                   <Badge className="bg-primary/20 text-primary-foreground border-primary/30">
                     {categories.find(cat => cat.id === image.category)?.label}
                   </Badge>
                 </div>
 
                 {/* Expand icon */}
-                <div className="absolute top-4 right-4 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-primary/80">
-                  <Maximize2 className="w-5 h-5 text-white" />
+                <div className="absolute top-4 right-4 w-10 h-10 bg-foreground/80 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-primary/80">
+                  <Maximize2 className="w-5 h-5 text-primary-foreground" />
                 </div>
               </div>
             </Card>
@@ -204,13 +204,13 @@ const Gallery = () => {
 
       {/* Modern lightbox modal */}
       {selectedImage && selectedImageData && (
-        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-lg flex items-center justify-center p-4 animate-fade-in">
+        <div className="fixed inset-0 z-50 bg-background/95 backdrop-blur-lg flex items-center justify-center p-4 animate-fade-in">
           <div className="relative max-w-6xl w-full h-full flex items-center justify-center">
             <button
               onClick={closeLightbox}
-              className="absolute top-8 right-8 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300"
+              className="absolute top-8 right-8 z-10 w-12 h-12 bg-foreground/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-foreground/20 transition-colors duration-300"
             >
-              <X className="w-6 h-6 text-white" />
+              <X className="w-6 h-6 text-foreground" />
             </button>
             
             <div className="w-full h-full max-h-[90vh] flex flex-col lg:flex-row gap-8 items-center">
@@ -222,12 +222,12 @@ const Gallery = () => {
                 />
               </div>
               
-              <div className="lg:w-96 text-white animate-fade-in" style={{ animationDelay: "200ms" }}>
+              <div className="lg:w-96 text-foreground animate-fade-in" style={{ animationDelay: "200ms" }}>
                 <Badge className="mb-4 bg-primary/20 text-primary-foreground border-primary/30">
                   {categories.find(cat => cat.id === selectedImageData.category)?.label}
                 </Badge>
                 <h3 className="text-3xl font-bold mb-4">{selectedImageData.title}</h3>
-                <p className="text-lg text-white/80 leading-relaxed">{selectedImageData.description}</p>
+                <p className="text-lg text-foreground/80 leading-relaxed">{selectedImageData.description}</p>
               </div>
             </div>
           </div>
