@@ -233,15 +233,43 @@
       0 0 0 1px hsla(220, 60%, 80%, 0.1);
   }
   
-  .glass-card:hover {
-    @apply scale-[1.02];
-    background: hsla(var(--glass-bg), 0.9);
-    border-color: hsla(var(--glass-border), 0.8);
-    box-shadow: 
-      0 30px 70px hsla(var(--glass-shadow), 0.6),
-      inset 0 2px 0 hsla(var(--glass-highlight), 0.4),
-      0 0 0 1px hsla(200, 100%, 70%, 0.3);
-  }
+.glass-card:hover {
+  @apply scale-[1.02];
+  background: hsla(var(--glass-bg), 0.9);
+  border-color: hsla(var(--glass-border), 0.8);
+  box-shadow: 
+    0 30px 70px hsla(var(--glass-shadow), 0.6),
+    inset 0 2px 0 hsla(var(--glass-highlight), 0.4),
+    0 0 0 1px hsla(200, 100%, 70%, 0.3);
+}
+
+.glass-card.no-hover {
+  @apply transition-none;
+}
+
+.glass-card.no-hover:hover {
+  transform: none;
+  background: hsla(var(--glass-bg), 0.8);
+  border-color: hsla(var(--glass-border), 0.6);
+  box-shadow:
+    0 20px 40px hsla(var(--glass-shadow), 0.4),
+    inset 0 2px 0 hsla(var(--glass-highlight), 0.2),
+    0 0 0 1px hsla(220, 60%, 80%, 0.1);
+}
+
+.header-liquid {
+  @apply backdrop-blur-xl;
+  background: linear-gradient(
+    135deg,
+    hsla(var(--glass-bg), 0.85) 0%,
+    hsla(var(--glass-bg), 0.75) 35%,
+    hsla(var(--glass-highlight), 0.25) 100%
+  );
+  border: 1px solid hsla(var(--glass-border), 0.5);
+  box-shadow:
+    0 18px 45px hsla(var(--glass-shadow), 0.35),
+    inset 0 1px 0 hsla(var(--glass-highlight), 0.2);
+}
   
   /* Liquid Reflection Effects */
   .liquid-reflection::before {

@@ -1,25 +1,47 @@
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [hasScrolledPastHero, setHasScrolledPastHero] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      const currentScroll = window.scrollY;
+      setIsScrolled(currentScroll > 10);
+
+      if (location.pathname !== "/") {
+        setHasScrolledPastHero(true);
+        return;
+      }
+
+      const heroElement = document.getElementById("hero");
+      if (!heroElement) {
+        setHasScrolledPastHero(false);
+        return;
+      }
+
+      const heroHeight = heroElement.offsetHeight;
+      setHasScrolledPastHero(currentScroll >= Math.max(heroHeight - 80, 0));
     };
 
     handleScroll();
+    const timeoutId = window.setTimeout(handleScroll, 120);
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+      window.clearTimeout(timeoutId);
+    };
+  }, [location.pathname]);
 
   const handleNavClick = (section: string) => {
     setIsOpen(false);
@@ -69,13 +91,15 @@ const Header = () => {
     }
   };
 
+  const hasLiquidBackground = location.pathname !== "/" || hasScrolledPastHero;
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-700 ease-out ${
-        isScrolled
-          ? "bg-background/80 backdrop-blur-md border-border shadow-lg"
+        hasLiquidBackground
+          ? "header-liquid border-border"
           : "bg-transparent border-transparent"
-      }`}
+      } ${isScrolled ? "shadow-lg" : ""}`}
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
